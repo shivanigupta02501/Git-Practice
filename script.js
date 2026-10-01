@@ -1,54 +1,65 @@
-const loginForm = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
 
-if (loginForm) {
+if (signupForm) {
 
-    loginForm.addEventListener("submit", function (event) {
+    signupForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
-        const email =
-            document.getElementById("loginEmail").value.trim();
+        console.log("Signup form submitted");
 
-        const password =
-            document.getElementById("loginPassword").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
 
-        const loginError =
-            document.getElementById("loginError");
-
-
-        // Registered user ko localStorage se get karo
-        const savedUser =
-            JSON.parse(localStorage.getItem("user"));
+        const errorMessage =
+            document.getElementById("errorMessage");
 
 
-        // Check user exist karta hai ya nahi
-        if (!savedUser) {
+        // Password check
+        if (password !== confirmPassword) {
 
-            loginError.textContent =
-                "No account found. Please sign up first.";
+            errorMessage.textContent =
+                "Password does not match!";
 
             return;
         }
 
 
-        // Email & Password check
-        if (
-            email === savedUser.email &&
-            password === savedUser.password
-        ) {
+        // Password length
+        if (password.length < 6) {
 
-            // Login status
-            localStorage.setItem("isLoggedIn", "true");
+            errorMessage.textContent =
+                "Password must be at least 6 characters!";
 
-            // Dashboard par redirect
-            window.location.href = "dashboard.html";
-
-        } else {
-
-            loginError.textContent =
-                "Invalid email or password.";
-
+            return;
         }
+
+
+        // User data
+        const user = {
+            name: name,
+            email: email,
+            password: password
+        };
+
+
+        // Save data in localStorage
+        localStorage.setItem(
+            "user",
+            JSON.stringify(user)
+        );
+
+
+        console.log("User saved:", user);
+
+        alert("Signup successful!");
+
+
+        // Go to login page
+        window.location.href = "login.html";
 
     });
 
