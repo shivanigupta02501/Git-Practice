@@ -1,3 +1,7 @@
+// =========================
+// SIGNUP
+// =========================
+
 const signupForm = document.getElementById("signupForm");
 
 if (signupForm) {
@@ -5,8 +9,6 @@ if (signupForm) {
     signupForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
-
-        console.log("Signup form submitted");
 
         const name = document.getElementById("name").value.trim();
         const email = document.getElementById("email").value.trim();
@@ -18,11 +20,11 @@ if (signupForm) {
             document.getElementById("errorMessage");
 
 
-        // Password check
+        // Password match
         if (password !== confirmPassword) {
 
             errorMessage.textContent =
-                "Password does not match!";
+                "Passwords do not match!";
 
             return;
         }
@@ -38,7 +40,7 @@ if (signupForm) {
         }
 
 
-        // User data
+        // User object
         const user = {
             name: name,
             email: email,
@@ -46,7 +48,7 @@ if (signupForm) {
         };
 
 
-        // Save data in localStorage
+        // Save user
         localStorage.setItem(
             "user",
             JSON.stringify(user)
@@ -55,11 +57,86 @@ if (signupForm) {
 
         console.log("User saved:", user);
 
-        alert("Signup successful!");
+        alert("Registration successful!");
 
 
-        // Go to login page
+        // Login page
         window.location.href = "login.html";
+
+    });
+}
+
+
+
+// =========================
+// LOGIN
+// =========================
+
+const loginForm = document.getElementById("loginForm");
+
+if (loginForm) {
+
+    loginForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+
+        const email =
+            document.getElementById("loginEmail").value.trim();
+
+        const password =
+            document.getElementById("loginPassword").value;
+
+
+        const loginError =
+            document.getElementById("loginError");
+
+
+        // Saved user
+        const savedUser =
+            JSON.parse(localStorage.getItem("user"));
+
+
+        console.log("Saved User:", savedUser);
+        console.log("Login Email:", email);
+
+
+        // User registered nahi hai
+        if (!savedUser) {
+
+            loginError.textContent =
+                "No account found. Please register first.";
+
+            return;
+        }
+
+
+        // Email and password check
+        if (
+            email === savedUser.email &&
+            password === savedUser.password
+        ) {
+
+            console.log("Login successful");
+
+
+            // Login status
+            localStorage.setItem(
+                "isLoggedIn",
+                "true"
+            );
+
+
+            // Dashboard
+            window.location.href =
+                "dashboard.html";
+
+        } else {
+
+            loginError.textContent =
+                "Invalid email or password!";
+
+        }
 
     });
 
