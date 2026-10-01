@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <h1>Welcome, <span id="userName"></span> 👋</h1>
+
+        <p>You have successfully signed up!</p>
+
+        <button onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+    <script>
+
+        // Check user login
+        const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+        if (isLoggedIn !== "true") {
+
+            // Agar login nahi hai to signup page par bhejo
+            window.location.href = "signup.html";
+
+        }
+
+        // User data get karo
+        const userData = JSON.parse(localStorage.getItem("user"));
+
+        if (userData) {
+            document.getElementById("userName").textContent = userData.name;
+        }
+
+        // Logout function
+        function logout() {
+
+            localStorage.removeItem("user");
+            localStorage.removeItem("isLoggedIn");
+
+            window.location.href = "signup.html";
+        }
+
+    </script>
+
+</body>
+</html>
