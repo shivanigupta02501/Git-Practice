@@ -23,11 +23,12 @@
             <span id="userName"></span> 👋
         </h1>
 
-        <p>
-            You are successfully logged in.
+        <p class="dashboard-text">
+            You are successfully logged in!
         </p>
 
-        <button onclick="logout()">
+        <button class="logout-btn" onclick="logout()">
+            <span>↪</span>
             Logout
         </button>
 
@@ -36,7 +37,7 @@
 
     <script>
 
-        // Login check
+        // Check login
         const isLoggedIn =
             localStorage.getItem("isLoggedIn");
 
@@ -47,15 +48,14 @@
         }
 
 
-        // User data
-        const userData =
+        // Get user data
+        const user =
             JSON.parse(localStorage.getItem("user"));
 
+        if (user) {
 
-        if (userData) {
-
-            document.getElementById("userName").textContent =
-                userData.name;
+            document.getElementById("userName")
+                .textContent = user.name;
 
         }
 

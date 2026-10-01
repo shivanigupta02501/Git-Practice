@@ -107,3 +107,107 @@ body {
     text-decoration: none;
     font-weight: bold;
 }
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard {
+    width: 500px;
+    max-width: 90%;
+
+    background: #ffffff;
+
+    padding: 45px 40px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.20);
+}
+
+.dashboard h1 {
+    color: #00395D;
+
+    font-size: 30px;
+
+    margin-bottom: 12px;
+}
+
+.dashboard h1 span {
+    color: #0077A8;
+}
+
+.dashboard-text {
+    color: #666;
+
+    font-size: 16px;
+
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   LOGOUT BUTTON
+========================= */
+
+.logout-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 13px 28px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #d62828;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-shadow: 0 5px 15px rgba(214, 40, 40, 0.25);
+}
+
+
+/* Logout icon */
+
+.logout-btn span {
+    font-size: 20px;
+}
+
+
+/* Hover */
+
+.logout-btn:hover {
+
+    background: #b91c1c;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(214, 40, 40, 0.35);
+}
+
+
+/* Click */
+
+.logout-btn:active {
+
+    transform: translateY(0);
+
+    box-shadow:
+        0 3px 8px rgba(214, 40, 40, 0.25);
+
+}
